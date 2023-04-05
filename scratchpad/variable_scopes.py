@@ -2,8 +2,6 @@ num = 10
 
 
 def print_global_num():
-    # Global declaration not required as there is no operation
-    # on the variable
     print(f"Global num is: {num}")
 
 
