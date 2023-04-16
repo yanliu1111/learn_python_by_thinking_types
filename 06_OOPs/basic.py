@@ -13,8 +13,20 @@ class Person:
     def __str__(self) -> str:
         """this magic method provides a string representation of an instance."""
         return f"Person: {self.first_name} {self.last_name}"
+    def greet(self) -> None:
+        """Method that prints a greeting message"""
+        print(f"{self.first_name} says Hello 👋")
 
+# Every instance has different memory address
 p1=Person("Peter", "Parker")
 p2=Person("Tony", "Stark")
-print(p1)
-print(p2)
+# print(p1)
+# print(p2)
+# print (f"p1 is located at {hex(id(p1))}")
+# print (f"p2 is located at {hex(id(p2))}")
+
+# not recommended to use __repr__ and __str__ in the same class
+print(p1.__str__())
+
+#p1.greet()
+#p2.greet()
