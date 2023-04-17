@@ -46,7 +46,11 @@ class Staff(Person):
         return cls(person.fname, person.lname, staff_id, role)
     @property # want to see private variable, getter method, the concept is called getters and setters
     def date_joined(self) -> datetime:
-        return self.__date_joined
+        return self.__date_joined.strftime("%B %d, %Y")
+    @staticmethod
+    def is_manager(role: Role) -> bool:
+        return role == Role.MANAGER
+  
     # setter method
     @property
     def salary(self) -> float:
@@ -63,14 +67,16 @@ class Staff(Person):
         else:
             self.__salary = amt
             print(f"{self.fullname} now has a salary of ${self.salary}/hr")
-    
+
 p1 = Person ('Samwell', 'Tarly')
 # print(p1)
 # print(p1.fullname)
 s1 = Staff.new(p1, 1234, Role.ASSOCIATE)
-print(s1)
-print(s1.date_joined.strftime("%B %d, %Y"))
-print(s1.salary)
+# print(s1)
+# print(s1.date_joined.strftime("%B %d, %Y"))
+# print(s1.salary)
+
+print("is_manager", Staff.is_manager(Role.ASSOCIATE))
 
 s1.salary = 17
 
