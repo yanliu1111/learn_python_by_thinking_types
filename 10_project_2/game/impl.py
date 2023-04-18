@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from random import randint
 from .constants import NUM_ATTACKS, WIN_MSG, LOST_MSG
 from .models.superheros import SuperHeroModel
@@ -21,7 +23,7 @@ class Game:
         return f"Player: {self.player},\nState: {self.state},\nSuperheros: {self.superheros},\nVillains: {self.villains}"
 
 #-------------------------Attact main logic/ move below code under the class-------------------------------
-    def attack(self)-> None:
+    def attack(self)-> Game: # have to import annotations
         self.state = GameState.IN_PROGRESS
         print("Starting attack...")
         print(self.state)
@@ -37,7 +39,8 @@ class Game:
                 self.__do_attack(attack_num, current_superhero, current_villain)
             else:
                 print("Error, no superhero or villain to fight with.")
-
+        return self
+    
     def __do_attack(self, attack_num: int, superhero: SuperHero, villain: Villain) -> None:         
         Life.inc_hero_life(superhero.life)
         Life.inc_villain_life(villain.life)
@@ -50,7 +53,7 @@ class Game:
         Life.dec_villain_life(superhero.attack_power)
 
     print('='*58)
-    def win_or_lose(self) -> None:
+    def win_or_lose(self) -> Game: # have to import annotations
         #helper messages
         
         if Life.hero_life>=Life.villain_life:
@@ -59,5 +62,6 @@ class Game:
         else:
             self.state = GameState.LOST
             print(LOST_MSG)
+        return self
 
     
