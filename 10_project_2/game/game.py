@@ -1,23 +1,6 @@
 from random import randint
 from typing import Final
 
-
-
-def get_all_villains() -> list[Villain]:
-    thanos = Villain(name="Thanos", attack_power=400, life=1500)
-    redskull = Villain(name="Redskull", attack_power=300, life=800)
-    proxima = Villain(name="Proxima", attack_power=320, life=800)
-
-    villains: list[Character] = [thanos, redskull, proxima]
-    return villains
-
-def get_villain(index: int) -> Villain | None:
-    """Returns a villain based on the index"""
-    villains = get_all_villains()
-    if index < 0 or index >= len(villains):
-        return None
-    return villains[index]
-
 #-------------------------main logic-------------------------------
 def attack()-> None:
     for attack_num in range (3):

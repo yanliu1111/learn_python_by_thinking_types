@@ -77,7 +77,7 @@ def get_all_villains() -> list[Villain]:
     redskull = Villain(name="Redskull", attack_power=300, life=800)
     proxima = Villain(name="Proxima", attack_power=320, life=800)
 
-    villains: list[Character] = [thanos, redskull, proxima]
+    villains: list[Villain] = [thanos, redskull, proxima]
     return villains
 
 def get_villain(index: int) -> Villain | None:
