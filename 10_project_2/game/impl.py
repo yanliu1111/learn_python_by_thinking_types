@@ -1,5 +1,5 @@
 from random import randint
-
+from .constants import NUM_ATTACKS, WIN_MSG, LOST_MSG
 from .models.superheros import SuperHeroModel
 from .models.villains import VillainModel
 
@@ -27,9 +27,9 @@ class Game:
         print(self.state)
 
         #Attack
-        for attack_num in range (3):
-            hero_index = randint(0, 3)
-            villain_index = randint (0, 2)
+        for attack_num in range (NUM_ATTACKS):
+            hero_index = randint(0, len(self.superheros.all) - 1)
+            villain_index = randint (0, len(self.villains.all) - 1)
             current_superhero = self.superheros.get_superhero(hero_index)
             current_villain = self.villains.get_villain(villain_index)
 
@@ -49,14 +49,15 @@ class Game:
         Life.dec_hero_life(villain.attack_power)
         Life.dec_villain_life(superhero.attack_power)
 
-    print('='*70)
+    print('='*58)
     def win_or_lose(self) -> None:
         #helper messages
-        WIN_MSG: Final[str] = "You successfully saved Zortan!!! ✨ ✨ ✨"
-        LOST_MSG: Final[str] = "Thanos killed Avengers and captured Zortan!! 💀 💀 💀"
+        
         if Life.hero_life>=Life.villain_life:
+            self.state = GameState.WIN
             print (WIN_MSG)
         else:
+            self.state = GameState.LOST
             print(LOST_MSG)
 
     
