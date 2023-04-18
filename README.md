@@ -12,3 +12,19 @@ I built two projects and overthought they look simple, they are densely packed w
 
 1. Cash Register
 2. SuperHero Game
+
+# Project2 - Packages - Thinking In Layers
+
+The whole idea behind creating packages is to divide our application into logical sub-components.
+These sub-components can be grouped by their type of functionality.
+
+## Layers for our game application
+
+| Sr No | Layer Name     | Particular                   | Visibility | Role      |
+| ----- | -------------- | ---------------------------- | ---------- | --------- |
+| 1     | Data Layer     | Package `models` & `schemas` | Private    | Internal  |
+| 2     | Business Logic | `impl.py`                    | Private    | Internal  |
+| 3     | API            | Package `game`               | Public     | Interface |
+| 4     | Client         | `main.py`                    |            | Consumer  |
+
+This repo includes all what I want to practice and repeat. Some details check this excellent [tutorial repo](https://github.com/octallium/modern-python-101).👍
