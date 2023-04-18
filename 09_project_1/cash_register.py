@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 from customer import Customer
 from invoice_item import InvoiceItem
 from item import Item
@@ -29,6 +30,60 @@ class CashRegister:
             new_item = InvoiceItem(item, qty, discount)
             self.items [item.name] = new_item
             self._inc_invoice_total(new_item)
-
         else:
-            print(f"{item.name} is already in the cart")
+            print(f"{item.name} is already in the cart, update instead?")
+    
+    #update item
+    def update_item(self, item: Item, qty: int=1, discount: float = 0) -> None:
+        if item.name in self.items:
+            old_item = self.items[item.name]
+            self._dec_invoice_total(old_item)
+            new_item = InvoiceItem(item, qty, discount)
+            self.items [item.name] = new_item
+            self._inc_invoice_total(new_item)
+        else:
+            print(f"{item.name} not in cart, purchase instead?")
+
+    #remove item
+    def remove_item(self, item: Item) -> None:
+        if item.name in self.items:
+            old_item = self.items[item.name]
+            self._dec_invoice_total(old_item)
+
+            del self.items[item.name]
+    
+    def get_invoice_total(self) -> float:
+        return self._invoice_total
+    
+    def display_invoice(self) -> None:
+        print()
+        print('+' * 70)
+        print(self)
+        print(f"Date: {self.purchase_date.strftime('%B %d, %Y')}")
+        print('-' * 70)
+        for item in self.items.values():
+            print(item)
+        print('-' * 70)
+        print(f"Total Price: ${self.get_invoice_total():.2f}")
+        print('+' * 70)
+
+#JSON FORMAT
+    def _get_items_as_dict(self) -> dict:
+        items_dict = {}
+        for item_name, invoice_item in self.items.items():
+            items_dict[item_name] = invoice_item.dict()
+        return items_dict
+    
+    def dict(self) -> dict:
+        cash_register = {
+            "customer": self.customer.dict(),
+            "items": self._get_items_as_dict(),
+            "purchase_date": self.purchase_date.strftime('%B %d, %Y'),
+            "invoice_total": self.get_invoice_total()
+        }
+        return cash_register
+    
+    def toJSON(self) -> str:
+        return json.dumps(self.dict(), indent=4, sort_keys=True)
+            
+       
