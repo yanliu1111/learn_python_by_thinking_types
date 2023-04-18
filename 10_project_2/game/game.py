@@ -1,20 +1,7 @@
 from random import randint
 from typing import Final
 
-def get_all_superheros() -> list[SuperHero]:
-    ironman = SuperHero(name="Ironman", attack_power=250, life=1000)
-    blackwidow = SuperHero(name="Blackwidow", attack_power=180, life=800)
-    spiderman = SuperHero(name="Spiderman", attack_power=190, life=700)
-    hulk = SuperHero(name="Hulk", attack_power=300, life=1100)
-    
-    superheros: list[SuperHero] = [ironman, blackwidow, spiderman, hulk]
-    return superheros
-def get_superhero(index: int) -> SuperHero | None:
-    """Returns a superhero based on the index"""
-    superheros = get_all_superheros()
-    if index < 0 or index >= len(superheros):
-        return None
-    return superheros[index]
+
 
 def get_all_villains() -> list[Villain]:
     thanos = Villain(name="Thanos", attack_power=400, life=1500)
