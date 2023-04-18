@@ -1,4 +1,4 @@
-from game.schema.superhero import SuperHero
+from game.schemas.superhero import SuperHero
 
 class SuperHeroModel:
     def __init__(self) -> None:

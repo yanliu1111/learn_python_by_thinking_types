@@ -1,4 +1,4 @@
-from game.schema.villain import Villain
+from game.schemas.villain import Villain
 
 class VillainModel:
     def __init__(self) -> None:
