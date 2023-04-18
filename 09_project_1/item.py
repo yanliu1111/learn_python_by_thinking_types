@@ -10,3 +10,11 @@ class Item:
     
     def __str__(self) -> str:
         return f"{self.name}: ${self.price}/{self.measurement_unit}"
+    
+    def dict(self) -> dict:
+        return {
+            "id": self.id,
+            "name": self.name,
+            "price": self.price,
+            "measurement_unit": self.measurement_unit
+        }

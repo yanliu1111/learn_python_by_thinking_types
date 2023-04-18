@@ -13,3 +13,11 @@ class InvoiceItem:
         return f"Item: {self.item.name}, Qty: {self.qty}, Discount: ${self.discount}, Sub Total: {self.get_sub_total():.2f}"
     def get_sub_total(self) -> float:
         return self._sub_total
+    
+    def dict (self) -> dict:
+        return {
+            "item": self.item.dict(),
+            "qty": self.qty,
+            "discount": self.discount,
+            "sub_total": self.get_sub_total()
+        }
