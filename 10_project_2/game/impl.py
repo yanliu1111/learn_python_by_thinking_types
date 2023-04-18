@@ -5,6 +5,9 @@ from .models.villains import VillainModel
 
 from .schemas.player import Player
 from .schemas.game_state import GameState
+from .schemas.superhero import SuperHero
+from .schemas.villain import Villain
+from .schemas.life import Life
 
 class Game:
     def __init__(self, player: Player)->None:
@@ -19,18 +22,23 @@ class Game:
 
 #-------------------------Attact main logic/ move below code under the class-------------------------------
     def attack(self)-> None:
+        self.state = GameState.IN_PROGRESS
+        print("Starting attack...")
+        print(self.state)
+
+        #Attack
         for attack_num in range (3):
             hero_index = randint(0, 3)
             villain_index = randint (0, 2)
-            current_superhero = get_superhero(hero_index)
-            current_villain = get_villain(villain_index)
+            current_superhero = self.superheros.get_superhero(hero_index)
+            current_villain = self.villains.get_villain(villain_index)
 
             if current_superhero and current_villain:
-                simulate_attack(attack_num, current_superhero, current_villain)
+                self.__do_attack(attack_num, current_superhero, current_villain)
             else:
-                print("Invalid superhero or villain index.")
+                print("Error, no superhero or villain to fight with.")
 
-    def simulate_attack(self, attack_num: int, superhero: SuperHero, villain: Villain) -> None:         
+    def __do_attack(self, attack_num: int, superhero: SuperHero, villain: Villain) -> None:         
         Life.inc_hero_life(superhero.life)
         Life.inc_villain_life(villain.life)
         
