@@ -1,0 +1,1 @@
+from .impl import Game, Player # We create API, other developers simply needs access to this one game.py file, they dont need to import other folders or files. They simply have to consume our API(logic).
